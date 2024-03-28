@@ -1,0 +1,6 @@
+.link {
+    width: calc(100% - 20px);
+    height: 200px;
+    background-color: #5f5f5f;
+    margin: 0px 10px 2px 10px;
+}

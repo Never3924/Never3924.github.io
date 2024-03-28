@@ -1,0 +1,9 @@
+.file {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 50px;
+    background-color: #0f0f0f;
+}
+.file > a {
+    color: white;
+}

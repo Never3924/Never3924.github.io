@@ -12,4 +12,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     addFile('test.txt', './files/test.txt');
+    addFile('わあああ.exe', './files/わあああ.exe');
 });

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         aTag.textContent = text;
         aTag.download = true;
         file.appendChild(aTag);
+        file.innerHTML += "<br />"
         element.appendChild(file);
     }
 

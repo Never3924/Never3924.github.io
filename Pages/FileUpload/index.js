@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let aTag = document.createElement('a');
         aTag.href = link;
         aTag.textContent = text;
-        aTag.download = true;
+        aTag.download = text;
         file.appendChild(aTag);
         file.innerHTML += "<br />"
         element.appendChild(file);

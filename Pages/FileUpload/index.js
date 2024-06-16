@@ -14,4 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addFile('test.txt', './files/test.txt');
     addFile('わあああ.exe', './files/わあああ.exe');
+    addFile('わあああ.exe', './files/文字認識.sb3');
+    addFile('わあああ.exe', './files/文字認識.txt');
 });

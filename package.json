@@ -1,0 +1,17 @@
+{
+  "name": "never3924.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Never3924 (https://scratch.mit.edu/users/Never3924/)",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

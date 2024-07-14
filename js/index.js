@@ -21,4 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'いろいろなファイルをアップロードしてます。',
         getLink('Pages/FileUpload/')
     );
+
+    link(
+        'Never3924のパンジャンドラムのゲーム',
+        '2日で作った。クオリティ低すぎてヤバい',
+        getLink('Pages/Panjandrum/')
+    );
 });

@@ -27,4 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
         '2日で作った。クオリティ低すぎてヤバい',
         getLink('Pages/Panjandrum/')
     );
+
+    link(
+        'Never3924のMap Guess',
+        'GeoGuessrの(ほぼ)逆で、指定したポイントの航空写真を選択肢から選ぶ。',
+        getLink('Pages/mapguess/')
+    );
 });

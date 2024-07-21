@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MapGuess</title>
+
+        <!-- leaflet-->
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin=""
+        />
+
+        <script
+            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""
+        ></script>
+
+        <script src="./index.js"></script>
+        <link rel="stylesheet" href="./index.css" />
+    </head>
+    <body>
+        <div id="loading" class="visible">
+            <div class="loader"></div>
+        </div>
+        <div id="main" class="invisible">
+            <div id="question">
+                <div id="maps">
+                    <h1>What's the picture here?</h1>
+                    <div id="map"></div>
+                </div>
+                <div id="btns">
+                    <button class="btn" id="hint">拡大 (ヒント)</button>
+
+                    <!-- アンサー・チェック! -->
+                    <button class="btn" id="answer_check">答え合わせ</button>
+
+                    <div id="result"></div>
+                </div>
+            </div>
+            <div id="answers">
+                <div class="answer"></div>
+                <div class="answer"></div>
+                <div class="answer"></div>
+            </div>
+        </div>
+        <div id="score">
+            <div>
+                Score: <span>0</span><br />
+                Hint: <span>0</span>
+            </div>
+        </div>
+    </body>
+</html>

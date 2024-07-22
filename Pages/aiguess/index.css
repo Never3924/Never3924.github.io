@@ -1,0 +1,188 @@
+/*
+Noto Sans JP 
+https://fonts.google.com/noto/specimen/Noto+Sans+JP
+*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+
+* {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+#main {
+    display: grid;
+
+    width: 70%;
+    min-width: calc((256px * 3) + (20px * 2));
+    height: 70%;
+    min-height: calc(350px * 2);
+
+    grid-template-rows: 50% 10% 40%; /* 縦 */
+    grid-template-columns: 100%; /* 横 */
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+#ai {
+    display: grid;
+
+    grid-row: 1;
+    grid-column: 1;
+
+    width: 100%;
+    height: 100%;
+
+    grid-template-rows: 100%; /* 縦 */
+    grid-template-columns: repeat(3, calc(100% / 3)); /* 横 */
+}
+
+#img {
+    display: grid;
+
+    grid-row: 3;
+    grid-column: 1;
+
+    width: 100%;
+    height: 100%;
+
+    grid-template-rows: 100%; /* 縦 */
+    grid-template-columns: repeat(3, calc(100% / 3)); /* 横 */
+}
+
+.img {
+    grid-row: 1;
+    grid-column: 2;
+
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+
+.img > label > img {
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.img > label {
+    display: block;
+
+    grid-row: 2;
+    grid-column: 1;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.ai {
+    display: grid;
+
+    width: 100%;
+    height: 100%;
+
+    grid-template-rows: 90% 10%;
+    grid-template-columns: 100%;
+
+    position: relative;
+}
+
+.ai > canvas {
+    grid-row: 2;
+    grid-column: 1;
+
+    width: 100%;
+    height: 100%;
+}
+
+.ai > label {
+    grid-row: 1;
+    grid-column: 1;
+
+    user-select: none;
+
+    overflow: scroll;
+}
+
+#text {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+#btns {
+    grid-row: 1;
+    grid-column: 3;
+
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-rows: 30% 20% 20% 30%;
+    grid-template-columns: 100%;
+}
+
+.btn {
+    margin: 0 10px;
+
+    border: none;
+    background-color: #afafaf;
+    transition: 0.3s ease-in all;
+}
+
+.btn:hover {
+    background-color: #8f8f8f;
+}
+
+.btn:nth-child(1) {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.btn:nth-child(2) {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+#load {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: white;
+
+    user-select: none;
+}
+
+#load > div {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.invisible {
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.answer {
+    background-color: greenyellow;
+}

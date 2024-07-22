@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AIGuess</title>
+
+        <script src="./index.js"></script>
+        <link rel="stylesheet" href="./index.css" />
+
+        <link rel="icon" href="./AIGUESS_ico.ico" />
+    </head>
+    <body>
+        <div id="load" class="visible">
+            <div>
+                <progress id="progress"></progress>
+                <p></p>
+            </div>
+        </div>
+        <div id="main" class="invisible">
+            <div id="ai">
+                <div class="ai">
+                    <input type="radio" name="ai" id="ai0" />
+                    <label for="ai0"> </label>
+                </div>
+                <div class="ai">
+                    <input type="radio" name="ai" id="ai1" />
+                    <label for="ai1"> </label>
+                </div>
+                <div class="ai">
+                    <input type="radio" name="ai" id="ai2" />
+                    <label for="ai2"> </label>
+                </div>
+            </div>
+            <p id="text">
+                この写真を見てAIが出力した文章はどれ？ (嘘が混じっているかも?
+                AIだから。)
+            </p>
+            <div id="img">
+                <div class="img">
+                    <label>
+                        <img src="" alt="mapTile2" />
+                    </label>
+                </div>
+                <div id="btns">
+                    <button class="btn" id="answerCheck">答え合わせ</button>
+                    <button class="btn" id="skip">スキップ</button>
+                    <div>
+                        <p></p>
+                        <p>スコア:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

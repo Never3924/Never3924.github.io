@@ -33,4 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'GeoGuessrの(ほぼ)逆で、指定したポイントの航空写真を選択肢から選ぶ。',
         getLink('Pages/mapguess/')
     );
+
+    link(
+        'Never3924のAI Guess',
+        'どの文がAIに指定の画像を読み込ませて生成した文かを当てる',
+        getLink('Pages/aiguess/')
+    );
 });

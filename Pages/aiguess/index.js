@@ -173,11 +173,19 @@ async function questionGen() {
         })
     );
 
-    const tileUrl = shuffleArray(
-        tileUrls.map((url) => {
-            return { index: tileUrls.indexOf(url), url };
-        })
-    );
+    let tileUrl = tileUrls.map((url) => {
+        return { index: tileUrls.indexOf(url), url };
+    });
+
+    console.log(asks);
+
+    console.log(tileUrl);
+
+    tileUrl = tileUrl.map((url) => {
+        return tileUrl[asks[tileUrl.indexOf(url)][0]];
+    });
+
+    console.log(tileUrl);
 
     progress.value += 0.1;
     load.querySelector('p').textContent = '生成が完了しました';
@@ -227,7 +235,7 @@ function getRadio() {
 
 function answerCheck() {
     if (question) {
-        const ask = question.asks[getRadio()][0];
+        const ask = getRadio();
         if (ask == question.tileUrl[0].index) {
             document
                 .getElementById('btns')
@@ -265,6 +273,8 @@ function answerCheck() {
 }
 
 function reset() {
+    question = null;
+
     setAITexts(['', '', '']);
 
     setImages(['']);

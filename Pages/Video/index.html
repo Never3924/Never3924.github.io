@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>動画共有サイト</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                font-family: 'Noto Sans JP', sans-serif;
+                margin: 0;
+                padding: 0;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            header {
+                background-color: #6200ea;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+            }
+            .video-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+                padding: 20px;
+            }
+            .video-tile {
+                cursor: pointer;
+                padding: 10px;
+                background-color: #f0f0f0;
+                text-align: center;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                transition: transform 0.3s, background-color 0.3s;
+            }
+            .video-tile:hover {
+                transform: scale(1.05);
+                background-color: #e0e0e0;
+            }
+            .video-popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: white;
+                padding: 50px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+                border-radius: 12px;
+                width: 80%;
+                max-width: 800px;
+            }
+            .video-popup video {
+                width: 100%;
+                height: auto;
+            }
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+                background-color: #6200ea;
+                color: white;
+                border: none;
+                width: 30px;
+                height: 30px;
+                font-size: 20px;
+                transition: background-color 0.3s;
+            }
+            .close-btn:hover {
+                background-color: #3700b3;
+            }
+            .dark-mode {
+                background-color: #121212;
+                color: #ffffff;
+            }
+            .dark-mode .video-tile {
+                background-color: #333333;
+                border-color: #444444;
+            }
+            .dark-mode .video-tile:hover {
+                background-color: #444444;
+            }
+            .dark-mode .video-popup {
+                background-color: #333333;
+            }
+            .dark-mode header {
+                background-color: #3700b3;
+            }
+            .theme-toggle {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+                background-color: #6200ea;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Never3924の動画共有サイト</h1>
+        </header>
+        <button id="theme-toggle" class="theme-toggle">ダークモード</button>
+        <div id="video-container" class="video-grid"></div>
+        <div id="video-popup" class="video-popup">
+            <button id="close-btn" class="close-btn">×</button>
+            <video id="popup-video" controls></video>
+        </div>
 
+        <script>
+            const videoPaths = [
+                'video/100Hours.mp4',
+                'video/780Hours.mp4',
+                'video/8000Hours.mp4',
+                'video/1Year.mp4'
+            ];
+
+            const videoContainer = document.getElementById('video-container');
+            const videoPopup = document.getElementById('video-popup');
+            const popupVideo = document.getElementById('popup-video');
+            const closeBtn = document.getElementById('close-btn');
+            const themeToggle = document.getElementById('theme-toggle');
+            let isDarkMode = false;
+
+            videoPaths.forEach((path) => {
+                const videoTile = document.createElement('div');
+                videoTile.className = 'video-tile';
+                videoTile.innerText = path.split('/').pop();
+                videoTile.addEventListener('click', () => {
+                    popupVideo.src = path;
+                    videoPopup.style.display = 'block';
+                });
+                videoContainer.appendChild(videoTile);
+            });
+
+            closeBtn.addEventListener('click', () => {
+                videoPopup.style.display = 'none';
+                popupVideo.pause();
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === videoPopup) {
+                    videoPopup.style.display = 'none';
+                    popupVideo.pause();
+                }
+            });
+
+            themeToggle.addEventListener('click', () => {
+                isDarkMode = !isDarkMode;
+                document.body.classList.toggle('dark-mode', isDarkMode);
+                themeToggle.innerText = isDarkMode
+                    ? 'ライトモード'
+                    : 'ダークモード';
+            });
+        </script>
+    </body>
+</html>

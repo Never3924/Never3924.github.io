@@ -16,4 +16,5 @@ document.addEventListener('DOMContentLoaded', () => {
     addFile('わあああ.exe', './files/わあああ.exe');
     addFile('文字認識セット1 (Scratch or Turbowarpにインポートして使用).sb3', './files/文字認識.sb3');
     addFile('文字認識セット2 (文字認識セット1のDataリストの中にインポートして使用.txt', './files/文字認識.txt');
+    addFile('zip.txt', './files/zip.txt');
 });

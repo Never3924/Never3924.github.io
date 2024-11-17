@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MIDIトラック抽出と再保存</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.28/build/Midi.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            #fileInput {
+                margin-bottom: 20px;
+            }
+            #trackList {
+                list-style-type: none;
+                padding: 0;
+            }
+            #trackList li {
+                margin: 5px 0;
+            }
+            button {
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>MIDIファイルからトラックを抽出</h1>
+
+        <input type="file" id="fileInput" accept=".mid, .midi" />
+        <h2>抽出されたトラック:</h2>
+        <ul id="trackList"></ul>
+
+        <script>
+            let midiFile; // MIDIファイルの内容を保持
+            let audioContext; // AudioContextを保持
+            let oscillators = []; // 再生中のオシレーターを保持
+
+            // MIDIファイルを読み込む
+            document
+                .getElementById('fileInput')
+                .addEventListener('change', function (event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const midiData = e.target.result;
+
+                            // MIDIデータを解析
+                            midiFile = new Midi(midiData);
+
+                            // トラック情報を表示
+                            const trackListElement =
+                                document.getElementById('trackList');
+                            trackListElement.innerHTML = ''; // リストをクリア
+
+                            midiFile.tracks.forEach((track, index) => {
+                                const li = document.createElement('li');
+                                li.textContent = `トラック ${
+                                    index + 1
+                                } - イベント数: ${track.notes.length}`;
+
+                                // 再生ボタンを追加
+                                const playButton =
+                                    document.createElement('button');
+                                playButton.textContent = '再生';
+                                playButton.onclick = () => playTrack(index); // トラック再生
+
+                                // 停止ボタンを追加
+                                const stopButton =
+                                    document.createElement('button');
+                                stopButton.textContent = '停止';
+                                stopButton.onclick = () => stopTrack(); // 全トラック停止
+
+                                // 保存ボタンを追加
+                                const saveButton =
+                                    document.createElement('button');
+                                saveButton.textContent = '保存';
+                                saveButton.onclick = () => saveTrack(index); // トラック保存
+
+                                li.appendChild(playButton);
+                                li.appendChild(stopButton);
+                                li.appendChild(saveButton);
+                                trackListElement.appendChild(li);
+                            });
+                        };
+                        reader.readAsArrayBuffer(file);
+                    }
+                });
+
+            // トラックを再生する関数
+            function playTrack(trackIndex) {
+                if (midiFile) {
+                    // AudioContextのインスタンスを作成
+                    audioContext = new (window.AudioContext ||
+                        window.webkitAudioContext)();
+
+                    const track = midiFile.tracks[trackIndex];
+                    const startTime = audioContext.currentTime; // 再生開始時刻
+
+                    // 各ノートの音を生成
+                    track.notes.forEach((note) => {
+                        const osc = audioContext.createOscillator();
+                        const gain = audioContext.createGain();
+
+                        // MIDIノート番号を周波数に変換
+                        const frequency = midiNoteToFrequency(note.midi);
+                        osc.frequency.setValueAtTime(
+                            frequency,
+                            startTime + note.time
+                        ); // ノートの開始時刻で音を鳴らす
+
+                        // 音の減衰設定
+                        gain.gain.setValueAtTime(0.1, startTime + note.time);
+                        gain.gain.exponentialRampToValueAtTime(
+                            0.001,
+                            startTime + note.time + note.duration
+                        );
+
+                        osc.connect(gain);
+                        gain.connect(audioContext.destination);
+
+                        // 音を再生
+                        osc.start(startTime + note.time);
+                        osc.stop(startTime + note.time + note.duration);
+
+                        // 再生中のオシレーターを保存
+                        oscillators.push(osc);
+                    });
+
+                    alert(`トラック ${trackIndex + 1} の再生開始!`);
+                }
+            }
+
+            // トラックを停止する関数
+            function stopTrack() {
+                // 再生中のオシレーターをすべて停止
+                oscillators.forEach((osc) => {
+                    osc.stop();
+                    osc.disconnect();
+                });
+                oscillators = []; // 停止後、オシレーターの配列をリセット
+                alert(`再生を停止しました。`);
+            }
+
+            // MIDIノート番号から周波数を計算する関数
+            function midiNoteToFrequency(midiNote) {
+                const A440 = 440; // A4の周波数
+                return A440 * Math.pow(2, (midiNote - 69) / 12);
+            }
+
+            // トラックを保存する関数
+            function saveTrack(trackIndex) {
+                if (midiFile) {
+                    // 指定したトラックだけを抜き出して新しいMIDIファイルを作成
+                    const trackData = midiFile.tracks[trackIndex];
+
+                    // 新しいMIDIファイルを作成
+                    const newMidiFile = new Midi();
+
+                    // トラックを新しいMIDIに追加
+                    const newTrack = newMidiFile.addTrack();
+                    trackData.notes.forEach((note) => {
+                        newTrack.addNote({
+                            midi: note.midi,
+                            time: note.time,
+                            duration: note.duration,
+                            velocity: note.velocity,
+                        });
+                    });
+
+                    // 新しいMIDIデータをArrayBufferに変換
+                    const midiData = newMidiFile.toArray();
+
+                    // BlobとしてMIDIファイルを保存
+                    const blob = new Blob([new Uint8Array(midiData)], {
+                        type: 'audio/midi',
+                    });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `track_${trackIndex + 1}.mid`; // 保存するファイル名
+                    a.click();
+                    URL.revokeObjectURL(url);
+                }
+            }
+        </script>
+    </body>
+</html>

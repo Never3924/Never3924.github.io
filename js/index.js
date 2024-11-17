@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     link(
         'Never3924のパンジャンドラムのゲーム',
         '2日で作った。クオリティ低すぎてヤバい',
-        getLink('Pages/Panjandrum/')
+        getLink('Pages/midi/split')
     );
 
     link(

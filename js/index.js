@@ -39,4 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'どの文がAIに指定の画像を読み込ませて生成した文かを当てる',
         getLink('Pages/aiguess/')
     );
+
+    link(
+        'MIDI 切り出し',
+        'midiをトラックごとに分けます。トラックごとの再生/停止/保存ができます。\nここだけの話、GPTでつくった。',
+        getLink('Pages/aiguess/')
+    );
 });

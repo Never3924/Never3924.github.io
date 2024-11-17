@@ -43,6 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     link(
         'MIDI 切り出し',
         'midiをトラックごとに分けます。トラックごとの再生/停止/保存ができます。\nここだけの話、GPTでつくった。',
-        getLink('Pages/aiguess/')
+        getLink('Pages/midi/split/')
     );
 });

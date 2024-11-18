@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recorder</title>
+        <script src="https://unpkg.com/picoaudio/dist/browser/PicoAudio.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi"></script>
+        <script src="./index.js"></script>
+      <title>リコーダーに変換</title>
+    </head>
+    <body>
+        リコーダーの運指にしたいmidiファイル(なるべく<a href="https://never3924.github.io/Pages/midi/split/">ここ</a>で1トラックにしてたほうがいいです)<input type="file" id="midiFileInput" accept=".mid" />
+
+        <img id="output" /><br />
+
+        <button id="back">&larr;</button><span id="page">0 / 0</span
+        ><button id="forw">&rarr;</button><br />
+        <button id="play">Play</button>
+    </body>
+</html>

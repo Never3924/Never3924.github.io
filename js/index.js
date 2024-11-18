@@ -45,4 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'midiをトラックごとに分けます。トラックごとの再生/停止/保存ができます。\nここだけの話、GPTでつくった。',
         getLink('Pages/midi/split/')
     );
+
+    link(
+        'MIDI to リコーダー',
+        'midiからリコーダー(アルト)の運指に変換できます。まだまだ未完成ですが勘弁。',
+        getLink('Pages/midi/')
+    );
 });

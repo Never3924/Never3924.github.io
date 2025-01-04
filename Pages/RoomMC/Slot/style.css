@@ -1,0 +1,102 @@
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#input-area {
+    margin-bottom: 20px;
+}
+
+#input-area label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#input-area input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+#input-area button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#input-area button:hover {
+    background-color: #45a049;
+}
+
+#calculation-area {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#calculation-area p {
+    margin: 5px 0;
+}
+
+#formula-toggle {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+    display: inline-block;
+}
+
+#formula {
+    margin-top: 10px;
+    white-space: pre-line;
+}
+
+#total-area {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#reset-button {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#reset-button:hover {
+    background-color: #da190b;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+    }
+}
